@@ -72,6 +72,7 @@ export default function App() {
   const close = () => setOpen(false)
   const [top, setTop] = useState(false)
   const [pg, setPg] = useState(false)
+  useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = '' } }, [open])
   useEffect(() => { const f = () => setTop(window.scrollY > 400); window.addEventListener('scroll', f); return () => window.removeEventListener('scroll', f) }, [])
 
   const submit = e => {
@@ -82,21 +83,26 @@ export default function App() {
   }
   const accept = () => { setCookie(false); try { localStorage.setItem('ck', 1) } catch {} }
 
-  return (<>
-    <div className="top"><div className="w"><span className="tcall">Have any questions? call us <svg viewBox="0 0 24 24" width="16" height="16" fill="#f4c03b"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg> <b>+1 (818) 23 45 678</b></span><span className="tsoc"><Social /></span></div></div>
-    <header><div className="w">
-      <a className="logo" href="#"><Img n="logo-construction.png" alt="XTRA Construction" className="logoimg" /></a>
-      <nav className={open ? 'open' : ''}>
+  const navItems = (<>
+
         <a href="#" className="home" aria-label="Home" onClick={close}><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 3 2 12h3v8h5v-6h4v6h5v-8h3z"/></svg></a><a href="#about" onClick={close}>About</a><a href="#services" onClick={close}>Services</a>
         <a href="#faq" onClick={close}>FAQ</a><a href="#projects" onClick={close}>Blog</a>
         <div className={`dd ${pg ? 'open' : ''}`}><a href="#" onClick={e => { if (window.innerWidth < 992) { e.preventDefault(); setPg(!pg) } }}>Pages <svg className="chev" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="m5 9 7 7 7-7"/></svg></a><ul>{['Shop', 'Cart', 'Wishlist', 'My account', 'Submenu example'].map(x => <li key={x}><a href="#">{x}</a></li>)}<li className="sub"><a href="#">Dropdown menu ›</a><ul>{['Submenu 1', 'Submenu 2'].map(x => <li key={x}><a href="#">{x}</a></li>)}</ul></li></ul></div>
         <a href="#quote" onClick={close}>Contact</a>
-        <div className="mfoot"><div className="soc"><Social /></div><span>© Copyright 2026</span></div>
-      </nav>
+  </>)
+
+  return (<>
+    <div className="top"><div className="w"><span className="tcall">Have any questions? call us <svg viewBox="0 0 24 24" width="16" height="16" fill="#f4c03b"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg> <b>+1 (818) 23 45 678</b></span><span className="tsoc"><Social /></span></div></div>
+    <header><div className="w">
+      <a className="logo" href="#"><Img n="logo-construction.png" alt="XTRA Construction" className="logoimg" /></a>
+      <nav className="dnav">{navItems}</nav>
       <span className="srch" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg></span><a className="hd-btn wbtn" href="#quote">Free Consultation</a>
       <a className="sq call" href="tel:+18181123445345" aria-label="Call"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></a>
       <button className="sq burger" aria-label="Menu" onClick={() => setOpen(!open)}>☰</button>
     </div></header>
+    <div className={`ovl ${open ? 'show' : ''}`} onClick={close}><button className="xclose" aria-label="Close menu">✕</button></div>
+    <aside className={`drawer ${open ? 'open' : ''}`} aria-hidden={!open}><nav>{navItems}</nav><div className="mfoot"><div className="soc"><Social /></div><span>© Copyright 2026</span></div></aside>
+
 
     <section className="hero">
       <div className={`slide s1 ${slide === 0 ? 'on' : ''}`}><div className="w">
