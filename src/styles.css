@@ -369,3 +369,20 @@ body{padding-bottom:56px}
 .drawer .mfoot .soc{gap:10px}
 .drawer .mfoot .soc a{width:44px;height:44px}
 }
+
+/* ---- Round 14: drawer accordion details from reference ---- */
+.dd li.sub>a{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dd li.sub>a .chev{transform:rotate(-90deg)}
+.buy{display:none}
+@media(max-width:991px){
+.drawer nav>a,.drawer nav>.dd>a{font-weight:600}
+.drawer .buy{display:flex}
+.drawer .dd.open>a,.drawer .dd li.sub.open>a{color:var(--y)}
+.drawer .dd ul{padding:0;background:transparent}
+.drawer .dd li a{padding:12px 22px 12px 38px;font-size:15px;color:#fff;font-weight:600;display:flex;align-items:center;justify-content:space-between}
+.drawer .dd li a:hover{background:transparent;color:var(--y)}
+.drawer .dd li.sub>ul{position:static;padding:0}
+.drawer .dd li.sub:not(.open)>ul{display:none}
+.drawer .dd li.sub>ul li a{padding-left:54px}
+.drawer .dd li.sub>a .chev{transform:none}.drawer .dd li.sub.open>a .chev{transform:rotate(180deg)}
+}

@@ -72,6 +72,7 @@ export default function App() {
   const close = () => setOpen(false)
   const [top, setTop] = useState(false)
   const [pg, setPg] = useState(false)
+  const [sb, setSb] = useState(false)
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = '' } }, [open])
   useEffect(() => { const f = () => setTop(window.scrollY > 400); window.addEventListener('scroll', f); return () => window.removeEventListener('scroll', f) }, [])
 
@@ -87,8 +88,9 @@ export default function App() {
 
         <a href="#" className="home" aria-label="Home" onClick={close}><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 3 2 12h3v8h5v-6h4v6h5v-8h3z"/></svg></a><a href="#about" onClick={close}>About</a><a href="#services" onClick={close}>Services</a>
         <a href="#faq" onClick={close}>FAQ</a><a href="#projects" onClick={close}>Blog</a>
-        <div className={`dd ${pg ? 'open' : ''}`}><a href="#" onClick={e => { if (window.innerWidth < 992) { e.preventDefault(); setPg(!pg) } }}>Pages <svg className="chev" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="m5 9 7 7 7-7"/></svg></a><ul>{['Shop', 'Cart', 'Wishlist', 'My account', 'Submenu example'].map(x => <li key={x}><a href="#">{x}</a></li>)}<li className="sub"><a href="#">Dropdown menu ›</a><ul>{['Submenu 1', 'Submenu 2'].map(x => <li key={x}><a href="#">{x}</a></li>)}</ul></li></ul></div>
+        <div className={`dd ${pg ? 'open' : ''}`}><a href="#" onClick={e => { if (window.innerWidth < 992) { e.preventDefault(); setPg(!pg) } }}>Pages <svg className="chev" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="m5 9 7 7 7-7"/></svg></a><ul>{['Shop', 'Cart', 'Wishlist', 'My account', 'Submenu example'].map(x => <li key={x}><a href="#">{x}</a></li>)}<li className={`sub ${sb ? 'open' : ''}`}><a href="#" onClick={e => { if (window.innerWidth < 992) { e.preventDefault(); setSb(!sb) } }}>Dropdown menu <svg className="chev" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="m5 9 7 7 7-7"/></svg></a><ul>{['Submenu 1', 'Submenu 2'].map(x => <li key={x}><a href="#">{x}</a></li>)}</ul></li></ul></div>
         <a href="#quote" onClick={close}>Contact</a>
+        <a className="buy" href="#" onClick={close}>Buy XTRA Theme</a>
   </>)
 
   return (<>
