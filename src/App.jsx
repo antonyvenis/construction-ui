@@ -94,7 +94,7 @@ export default function App() {
         <div className="mfoot"><div className="soc"><Social /></div><span>© Copyright 2026</span></div>
       </nav>
       <span className="srch" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg></span><a className="hd-btn wbtn" href="#quote">Free Consultation</a>
-      <a className="sq call" href="tel:+18181123445345" aria-label="Call">📞</a>
+      <a className="sq call" href="tel:+18181123445345" aria-label="Call"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></a>
       <button className="sq burger" aria-label="Menu" onClick={() => setOpen(!open)}>☰</button>
     </div></header>
 
@@ -157,7 +157,7 @@ export default function App() {
         <input className="f" placeholder="Subject" />
         <select className="f">{['Business', 'Personal', 'Support', 'Others'].map(x => <option key={x}>{x} Departemant</option>)}</select>
         <textarea className="f" rows="4" placeholder="Your Message" />
-        <div className="f"><button className="btn" type="submit">Send Message</button>
+        <div className="f"><button className="btn" type="submit">Send</button>
           {err && <div style={{ color: '#c0392b', marginTop: 10 }}>{err}</div>}
           {sent && <div className="ok" style={{ display: 'block' }}>Thank you! We will get back to you soon.</div>}</div>
       </div></Reveal>
@@ -178,7 +178,7 @@ export default function App() {
       <div className="fl"><span>© 2026 XTRA, Powered by WordPress</span><a href="#quote">Contact Us</a><a href="#about">About</a><a href="#">Privacy Policy</a></div>
     </div></footer>
     {top && <button className="totop" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑</button>}
-    <a className="callbar" href="tel:+18181123445345"><i>📞</i><span>+1 (818) 112344534</span></a>
+    <a className="callbar" href="tel:+18181123445345"><i><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></i><span>+1 (818) 112344534</span></a>
     {cookie && <div className="ck">This website uses cookies to improve user experience. <button onClick={accept}>Accept and close</button></div>}
   </>)
 }
