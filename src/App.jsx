@@ -73,6 +73,20 @@ export default function App() {
   const [top, setTop] = useState(false)
   const [pg, setPg] = useState(false)
   const [sb, setSb] = useState(false)
+  const [toast, setToast] = useState('')
+  useEffect(() => {
+    const h = e => {
+      const l = e.target.closest && e.target.closest('a[href="#"]')
+      if (!l || l.closest('.logo') || l.classList.contains('home')) return
+      e.preventDefault()
+      if (l.matches('.dd>a, .dd li.sub>a')) return
+      setOpen(false)
+      setToast((l.textContent || 'This').replace('›', '').trim())
+      clearTimeout(window.__tt); window.__tt = setTimeout(() => setToast(''), 2800)
+    }
+    document.addEventListener('click', h)
+    return () => document.removeEventListener('click', h)
+  }, [])
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = '' } }, [open])
   useEffect(() => { const f = () => setTop(window.scrollY > 400); window.addEventListener('scroll', f); return () => window.removeEventListener('scroll', f) }, [])
 
@@ -185,6 +199,7 @@ export default function App() {
       <div className="soc"><Social yt /></div>
       <div className="fl"><span>© 2026 XTRA, Powered by WordPress</span><a href="#quote">Contact Us</a><a href="#about">About</a><a href="#">Privacy Policy</a></div>
     </div></footer>
+    {toast && <div className="toast" role="status"><b>{toast}</b> page is outside this home-page task.</div>}
     {top && <button className="totop" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑</button>}
     <a className="callbar" href="tel:+18181123445345"><i><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></i><span>+1 (818) 112344534</span></a>
     {cookie && <div className="ck">This website uses cookies to improve user experience. <button onClick={accept}>Accept and close</button></div>}
